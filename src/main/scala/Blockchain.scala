@@ -2,12 +2,14 @@ import java.time.LocalDateTime
 
 class Blockchain {
   var chain = Seq[Block](createGenesisBlock())
+  val difficulty = 4
 
   def createGenesisBlock(): Block = {
     new Block(LocalDateTime.now(), "A genesis block.")
   }
 
   def addBlock(block: Block): Unit = {
+    block.mineBlock(difficulty)
     this.chain = this.chain :+ block
   }
 
